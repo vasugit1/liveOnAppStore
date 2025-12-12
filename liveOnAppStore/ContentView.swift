@@ -1,24 +1,14 @@
-//
-//  ContentView.swift
-//  liveOnAppStore
-//
-//  Created by Sri Tummala on 11/22/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        Text("I am live on app store")
+            .font(.title)
+            .padding()
     }
 }
 
 #Preview {
     ContentView()
 }
+
