@@ -72,7 +72,7 @@ struct ContentView: View {
                         Slider(value: $years, in: 0...200, step: 0.25)
                     }
                 }
-
+//
                 Section {
                     Button("Calculate") { calculate() }
                         .frame(maxWidth: .infinity)
