@@ -24,7 +24,7 @@ struct ContentView: View {
                         .keyboardType(.decimalPad)
                         .focused($focusedField, equals: .netWorth)
 
-                    // Growth Rate (Text + Slider)
+                    // Growth Rate (Text + Slider) test 1
                     VStack(alignment: .leading, spacing: 6) {
                         HStack {
                             Text("Growth rate (%)")
