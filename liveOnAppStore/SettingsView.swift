@@ -5,13 +5,13 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @AppStorage("autoConvertNetWorth") private var autoConvertNetWorth: Bool = false
     
-    private static let defaultRate: Double = 83.0
+    private static let defaultRate: Double = 89.0
     
     private var formatter: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 4
-        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
         return formatter
     }
     
@@ -36,19 +36,10 @@ struct SettingsView: View {
                     Text("The exchange rate from US Dollar to Indian Rupee (1 USD equals X INR).")
                         .font(.footnote)
                         .foregroundColor(.secondary)
-                    Button("Reset to Default (\(Self.defaultRate))") {
+
+                    Button("Reset to Default (\(Self.formatter.string(from: NSNumber(value: Self.defaultRate)) ?? "89.00"))") {
                         usdToInrRate = Self.defaultRate
                         rateString = formatter.string(from: NSNumber(value: Self.defaultRate)) ?? ""
-                    }
-                }
-                Section("Behavior") {
-                    Toggle(isOn: $autoConvertNetWorth) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("Automatically convert net worth when switching USD/INR")
-                            Text("Uses the rate above to convert the current amount.")
-                                .font(.footnote)
-                                .foregroundStyle(.secondary)
-                        }
                     }
                 }
             }
@@ -56,7 +47,6 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") {
-                        // Sync text to model before dismissing
                         if let number = formatter.number(from: rateString)?.doubleValue {
                             usdToInrRate = number
                         }
@@ -70,8 +60,8 @@ struct SettingsView: View {
     private static var formatter: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 4
-        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
         return formatter
     }
 }
