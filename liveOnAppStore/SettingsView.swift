@@ -28,7 +28,7 @@ struct SettingsView: View {
                 Section("Currency Conversion") {
                     TextField("USD → INR rate", text: $rateString)
                         .keyboardType(.decimalPad)
-                        .onChange(of: rateString) { newValue in
+                        .onChange(of: rateString) { oldValue, newValue in
                             if let number = formatter.number(from: newValue)?.doubleValue {
                                 usdToInrRate = number
                             }
